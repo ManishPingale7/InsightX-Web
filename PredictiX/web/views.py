@@ -1,8 +1,10 @@
+from django.core import serializers
 from django.shortcuts import render, redirect
 from django.http import HttpResponse,JsonResponse
 from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.models import User
 from django.views.decorators.csrf import csrf_exempt
+from django.middleware.csrf import get_token
 
 from ml import Interface
 from .models import MachineRecord
@@ -16,12 +18,18 @@ warnings.filterwarnings("ignore")
 def home(request):
     return render(request, "web/home.html")
 
+def get_csrf_token(request):
+    token = get_token(request)
+    response = HttpResponse()
+    response["X-CSRFToken"] = token
+    return response
+
 
 @csrf_exempt
 # @login_required(login_url='')
 def predict(request):
     if request.method == "POST":
-        # input
+        # Input
         air_temp = request.POST["air_temp"]
         process_temp = request.POST["process_temp"]
         rotational_speed = request.POST["rotational_speed"]
@@ -29,7 +37,7 @@ def predict(request):
         tool_wear = request.POST["tool_wear"]
         quality = request.POST["quality"]
         name = request.POST["machine_name"]
-        # auth
+        # Auth
 
         list = [[air_temp, process_temp,
                  rotational_speed, torque,
@@ -37,7 +45,7 @@ def predict(request):
 
         preds = Interface.predict(list)
 
-        # For android
+        # For Android
         if request.POST.get("client", "web") == "android":
             user = request.POST["user"]
             password = request.POST["password"]
@@ -60,8 +68,6 @@ def predict(request):
 # Auth part
 
 # TODO:S Solve csrf issue
-
-
 @csrf_exempt
 def loginUser(request):
     if request.method == "POST":
@@ -85,7 +91,6 @@ def loginUser(request):
         print(request.GET)
         return render(request, "web/login.html")
 
-from django.core import serializers
 
 def predictions(request):
     # For Android

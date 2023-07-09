@@ -9,5 +9,6 @@ urlpatterns = [
     path("signup",views.signupUser,name="Signup"),
     path("logout",views.logoutUser,name="Logout"),
     path("predictions",views.predictions,name="Predictions"),
+    path("get-token",views.get_csrf_token,name="Token"),
     path("predict",views.predict,name="Predict")
 ]
