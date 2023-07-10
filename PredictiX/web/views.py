@@ -18,15 +18,10 @@ warnings.filterwarnings("ignore")
 def home(request):
     return render(request, "web/home.html")
 
-def get_csrf_token(request):
-    token = get_token(request)
-    response = HttpResponse()
-    response["X-CSRFToken"] = token
-    return response
-
+def plots(request):
+    return render(request,"web/graph.html")
 
 @csrf_exempt
-# @login_required(login_url='')
 def predict(request):
     if request.method == "POST":
         # Input
@@ -44,20 +39,6 @@ def predict(request):
                  tool_wear, quality]]
 
         preds = Interface.predict(list)
-
-        # For Android
-        if request.POST.get("client", "web") == "android":
-            user = request.POST["user"]
-            password = request.POST["password"]
-            request.user = authenticate(username=user, password=password)
-            record = MachineRecord(name=name, user=request.user, air_temp=air_temp,
-                                   process_temp=process_temp, rotational_speed=rotational_speed,
-                                   torque=torque, tool_wear=tool_wear,
-                                   quality=quality, predictions=preds.tolist())
-            record.save()
-            return HttpResponse(record)
-
-        # For Web
         record = MachineRecord(name=name, user=request.user, air_temp=air_temp,
                                process_temp=process_temp, rotational_speed=rotational_speed,
                                torque=torque, tool_wear=tool_wear,
@@ -67,52 +48,33 @@ def predict(request):
 
 # Auth part
 
-# TODO:S Solve csrf issue
-@csrf_exempt
-def loginUser(request):
+def login_user(request):
     if request.method == "POST":
         username = request.POST["loginusername"]
         password = request.POST["loginpass"]
-        client = request.POST.get("client", "web")
 
         user = authenticate(username=username, password=password)
 
         if user is not None:
             login(request, user)
-            if client == "android":
-                return HttpResponse(user)
             return redirect("Home")
         else:
-            if client == "android":
-                return HttpResponse("Failed!!")
             return redirect("Login")
 
     else:
         print(request.GET)
         return render(request, "web/login.html")
 
-
 def predictions(request):
-    # For Android
-    if request.META.get("HTTP_CLIENT","web")=="android":
-        user = request.META.get("HTTP_USER")
-        pass1 = request.META.get("HTTP_PASS")
-        request.user = authenticate(username=user,password=pass1)
-        data = MachineRecord.objects.filter(user=request.user)
-        log = serializers.serialize("json",data)
-        return HttpResponse(log)
-    # For Web
     data = MachineRecord.objects.filter(user=request.user)
     log = serializers.serialize("json",data)
     return HttpResponse(log)
 
-def logoutUser(request):
+def logout_user(request):
     logout(request)
-    print("Logged out!")
     return redirect("Home")
 
-
-def genName(name):
+def gen_name(name):
     name = name.split(" ")
     if len(name) == 2:
         return name[0], name[1]
@@ -121,8 +83,7 @@ def genName(name):
     else:
         return name[0], ""
 
-
-def signupUser(request):
+def signup_user(request):
     if request.method == "POST":
         name = request.POST["name"]
         email = request.POST["email"]
@@ -130,14 +91,14 @@ def signupUser(request):
         pass2 = request.POST["pass2"]
         name = str(name).strip()
 
-        fName, lName = genName(name)
+        f_name, l_name = gen_name(name)
 
         if not pass1 == pass2:
             return redirect("Signup")
 
         user = User.objects.create_user(username=email,
-                                        first_name=fName,
-                                        last_name=lName,
+                                        first_name=f_name,
+                                        last_name=l_name,
                                         password=pass1)
         if user:
             user.save()
