@@ -1,6 +1,6 @@
 from django.db.models.query import QuerySet
 
-def predictions_serializer(data):
+def records_serializer(data):
     serialized_data=[]
     if isinstance(data,QuerySet):
         for obj in data:
@@ -32,5 +32,4 @@ def predictions_serializer(data):
                 "quality":data.quality,
                 "predictions":data.predictions
             }
-    serialized_data.append(serialized_obj)
-    return serialized_data
+    return serialized_obj

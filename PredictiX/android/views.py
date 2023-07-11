@@ -6,7 +6,7 @@ from django.contrib.auth.models import User
 from ml import Interface
 from web.models import MachineRecord
 from django.core import serializers
-from utils.serializers import predictions_serializer
+from utils.serializers import records_serializer
 
 
 @csrf_exempt
@@ -19,8 +19,8 @@ def login_user(request):
         
         if user is not None:
             login(request, user)
-            return HttpResponse(user,status=200)
-        return HttpResponse("Login Failed",status=401)
+            return JsonResponse(user,status=200)
+        return JsonResponse("Login Failed",status=401)
 
 @csrf_exempt
 # Client side will take care of validations
@@ -40,8 +40,8 @@ def signup_user(request):
                                         password=pass1)
         if user:
             user.save()
-            return HttpResponse(user,status=200)
-        return HttpResponse("Failed to create user",status=401)
+            return JsonResponse(user,status=200)
+        return JsonResponse("Failed to create user",status=401)
 
 # Adding record
 def predict(request):
@@ -70,31 +70,42 @@ def predict(request):
                                    torque=torque, tool_wear=tool_wear,
                                    quality=quality, predictions=preds.tolist())
     record.save()
-    record = predictions_serializer(record)
+    record = records_serializer(record)
 
     return JsonResponse(record,safe=False)        
 
 @csrf_exempt
 def all_records(request):
+
     # Return All Records
     if request.method =="GET":
-        user = request.META.get("HTTP_USER")
-        pass1 = request.META.get("HTTP_PASS")
-        request.user = authenticate(username=user,password=pass1)
-        data = MachineRecord.objects.filter(user=request.user)
-        log = predictions_serializer(data)
+        # user = request.META.get("HTTP_USER")
+        # pass1 = request.META.get("HTTP_PASS")
+        # request.user = authenticate(username=user,password=pass1)
+        # data = MachineRecord.objects.filter(user=request.user)
+        data = MachineRecord.objects.all()
+        log = records_serializer(data)
         return JsonResponse(log,safe=False)
+    
     # Add Single Record
     elif request.method =="POST":
         return predict(request)
     
 @csrf_exempt
 def single_record(request,id):
+
     # Get a single record
     if request.method=="GET":
-        #TODO: Implementation remaining
-        pass
+        record = MachineRecord.objects.filter(id=id).first()
+        if record:
+            return JsonResponse(records_serializer(record),safe=False,status=200)
+        return JsonResponse("Record not found!",safe=False,status=404)
+
+
     # Delete a single record
     elif request.method=="DELETE":
-        #TODO: Implementation remaining
-        pass
+        record=MachineRecord.objects.filter(id=id).first()
+        if record:
+            record.delete()
+            return JsonResponse("Deleted Successfully",safe=False,status=200)
+        return JsonResponse("Record not found!",safe=False,status=404)
