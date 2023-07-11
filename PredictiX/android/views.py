@@ -19,22 +19,20 @@ def login_user(request):
         
         if user is not None:
             login(request, user)
-            return HttpResponse(user)
-        return HttpResponse("Login Failed")
+            return HttpResponse(user,status=200)
+        return HttpResponse("Login Failed",status=401)
 
 @csrf_exempt
+# Client side will take care of validations
 def signup_user(request):
     if request.method == "POST":
         name = request.POST["name"]
         email = request.POST["email"]
         pass1 = request.POST["pass1"]
-        pass2 = request.POST["pass2"]
         name = str(name).strip()
 
         f_name, l_name = gen_name(name)
 
-        if not pass1 == pass2:
-            return HttpResponse("Passwords do not match")
 
         user = User.objects.create_user(username=email,
                                         first_name=f_name,
@@ -42,8 +40,8 @@ def signup_user(request):
                                         password=pass1)
         if user:
             user.save()
-            return HttpResponse(user)
-        return HttpResponse("Failed to create user")
+            return HttpResponse(user,status=200)
+        return HttpResponse("Failed to create user",status=401)
 
 # Adding record
 def predict(request):
