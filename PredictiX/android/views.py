@@ -1,11 +1,12 @@
 from django.contrib.auth import authenticate,login
-from django.http import HttpResponse
+from django.http import HttpResponse,JsonResponse
 from django.views.decorators.csrf import csrf_exempt
 from web.views import gen_name
 from django.contrib.auth.models import User
 from ml import Interface
 from web.models import MachineRecord
 from django.core import serializers
+from utils.serializers import predictions_serializer
 
 
 @csrf_exempt
@@ -82,5 +83,5 @@ def predictions(request):
     pass1 = request.META.get("HTTP_PASS")
     request.user = authenticate(username=user,password=pass1)
     data = MachineRecord.objects.filter(user=request.user)
-    log = serializers.serialize("json",data)
-    return HttpResponse(log)
+    log = predictions_serializer(data)
+    return JsonResponse(log,safe=False)
