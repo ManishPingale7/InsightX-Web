@@ -45,43 +45,58 @@ def signup_user(request):
             return HttpResponse(user)
         return HttpResponse("Failed to create user")
 
-@csrf_exempt
+# Adding record
 def predict(request):
-    if request.method == "POST":
-        # Input
-        air_temp = request.POST["air_temp"]
-        process_temp = request.POST["process_temp"]
-        rotational_speed = request.POST["rotational_speed"]
-        torque = request.POST["torque"]
-        tool_wear = request.POST["tool_wear"]
-        quality = request.POST["quality"]
-        name = request.POST["machine_name"]
+    # Input
+    air_temp = request.POST["air_temp"]
+    process_temp = request.POST["process_temp"]
+    rotational_speed = request.POST["rotational_speed"]
+    torque = request.POST["torque"]
+    tool_wear = request.POST["tool_wear"]
+    quality = request.POST["quality"]
+    machine_name = request.POST["machine_name"]
 
-        list = [[air_temp, process_temp,
+    list = [[air_temp, process_temp,
                  rotational_speed, torque,
                  tool_wear, quality]]
 
-        preds = Interface.predict(list)
+    preds = Interface.predict(list)
 
-        #Auth
-        user = request.POST["user"]
-        password = request.POST["password"]
-        request.user = authenticate(username=user, password=password)
+    #Auth
+    user = request.POST["user"]
+    password = request.POST["password"]
+    request.user = authenticate(username=user, password=password)
 
-        record = MachineRecord(name=name, user=request.user, air_temp=air_temp,
+    record = MachineRecord(machine_name=machine_name, user=request.user, air_temp=air_temp,
                                    process_temp=process_temp, rotational_speed=rotational_speed,
                                    torque=torque, tool_wear=tool_wear,
                                    quality=quality, predictions=preds.tolist())
-        record.save()
-        record = serializers.serialize("json",[record])
+    record.save()
+    record = predictions_serializer(record)
 
-        return HttpResponse(record)        
+    return JsonResponse(record,safe=False)        
 
 @csrf_exempt
-def predictions(request):
-    user = request.META.get("HTTP_USER")
-    pass1 = request.META.get("HTTP_PASS")
-    request.user = authenticate(username=user,password=pass1)
-    data = MachineRecord.objects.filter(user=request.user)
-    log = predictions_serializer(data)
-    return JsonResponse(log,safe=False)
+def all_records(request):
+    # Return All Records
+    if request.method =="GET":
+        user = request.META.get("HTTP_USER")
+        pass1 = request.META.get("HTTP_PASS")
+        request.user = authenticate(username=user,password=pass1)
+        data = MachineRecord.objects.filter(user=request.user)
+        log = predictions_serializer(data)
+        return JsonResponse(log,safe=False)
+    # Add Single Record
+    elif request.method =="POST":
+        return predict(request)
+    
+@csrf_exempt
+def single_record(request,id):
+    # Get a single record
+    if request.method=="GET":
+        #TODO: Implementation remaining
+        pass
+    # Delete a single record
+    elif request.method=="DELETE":
+        #TODO: Implementation remaining
+        pass
