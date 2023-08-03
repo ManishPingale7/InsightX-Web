@@ -23,11 +23,13 @@
           >
             <a href="{% url 'Predict' %}">Predict</a>
           </li>
+          {% if request.user.is_authenticated %}
           <li
-            class="navitem {% block predictions_active %}{% endblock predictions_active %}"
+            class="navitem {% block history_active %}{% endblock history_active %}"
           >
-            <a href="{% url 'Predictions' %}">Predictions</a>
+            <a href="{% url 'History' %}">History</a>
           </li>
+          {% endif %}
           <li
             class="navitem {% block explore_active %}{% endblock explore_active %}"
           >

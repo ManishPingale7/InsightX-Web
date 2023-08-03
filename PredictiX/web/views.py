@@ -79,8 +79,8 @@ def login_user(request):
 
 
 @login_required()
-def predictions(request):
-    return render(request,"web/predictions.html")
+def history(request):
+    return render(request,"web/history.html")
     # data = MachineRecord.objects.filter(user=request.user)
     # log = serializers.serialize("json", data)
     # return HttpResponse(log)
