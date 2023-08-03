@@ -1,0 +1,66 @@
+{% load static %}
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>{% block title %}{% endblock title %}</title>
+    <link rel="stylesheet" href="{% static 'css/navigation.css' %}" />
+    <link rel="stylesheet" href="{% static 'css/footer.css' %}" />
+    {% block head %}{% endblock head %}
+  </head>
+  <body>
+    <header>
+      <nav>
+        <div class="branding">
+          <a href="{% url 'Home' %}"> InsightX </a>
+        </div>
+        <ul class="navlist">
+          <li class="navitem {% block home_active %}{% endblock home_active %}">
+            <a href="{% url 'Home' %}">Home</a>
+          </li>
+          <li
+            class="navitem {% block predict_active %}{% endblock predict_active %}"
+          >
+            <a href="{% url 'Predict' %}">Predict</a>
+          </li>
+          <li
+            class="navitem {% block predictions_active %}{% endblock predictions_active %}"
+          >
+            <a href="{% url 'Predictions' %}">Predictions</a>
+          </li>
+          <li
+            class="navitem {% block explore_active %}{% endblock explore_active %}"
+          >
+            <a href="{% url 'Explore' %}">Explore</a>
+          </li>
+          <li
+            class="navitem {% block about_active %}{% endblock about_active %}"
+          >
+            <a href="{% url 'About' %}">About</a>
+          </li>
+          <li class="userlistactionlist">
+            <a href="{% url 'Signup' %}" class="userAction" id="signup"
+              >Sign Up</a
+            >
+          </li>
+          <li class="userlistactionlist">
+            {% if request.user.is_authenticated %}
+            <a href="{% url 'Logout' %}" class="userAction">Logout</a>
+            {% else %}
+            <a href="{% url 'Login' %}" class="userAction">Login</a>
+            {% endif %}
+          </li>
+        </ul>
+        <div class="hamburger">
+          <span class="bar"></span>
+          <span class="bar"></span>
+          <span class="bar"></span>
+        </div>
+      </nav>
+    </header>
+    {% block body %}{% endblock body %}
+  </body>
+  <script>
+    {% block script %}{% endblock script %}
+  </script>
+</html>

@@ -1,10 +1,10 @@
 from django.core import serializers
 from django.shortcuts import render, redirect
-from django.http import HttpResponse,JsonResponse
+from django.http import HttpResponse, JsonResponse
 from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.models import User
 from django.views.decorators.csrf import csrf_exempt
-from django.middleware.csrf import get_token
+from django.contrib.auth.decorators import login_required
 
 from ml import Interface
 from .models import MachineRecord
@@ -18,8 +18,18 @@ warnings.filterwarnings("ignore")
 def home(request):
     return render(request, "web/home.html")
 
+
+def about(request):
+    return render(request, "web/about.html")
+
+
+def explore(request):
+    return render(request, "web/explore.html")
+
+
 def plots(request):
-    return render(request,"web/graph.html")
+    return render(request, "web/graph.html")
+
 
 @csrf_exempt
 def predict(request):
@@ -45,8 +55,10 @@ def predict(request):
                                quality=quality, predictions=preds.tolist())
         record.save()
         return HttpResponse(record)
+    return render(request,"web/predict.html")
 
 # Auth part
+
 
 def login_user(request):
     if request.method == "POST":
@@ -65,14 +77,19 @@ def login_user(request):
         print(request.GET)
         return render(request, "web/login.html")
 
+
+@login_required()
 def predictions(request):
-    data = MachineRecord.objects.filter(user=request.user)
-    log = serializers.serialize("json",data)
-    return HttpResponse(log)
+    return render(request,"web/predictions.html")
+    # data = MachineRecord.objects.filter(user=request.user)
+    # log = serializers.serialize("json", data)
+    # return HttpResponse(log)
+
 
 def logout_user(request):
     logout(request)
     return redirect("Home")
+
 
 def gen_name(name):
     name = name.split(" ")
@@ -83,9 +100,10 @@ def gen_name(name):
     else:
         return name[0], ""
 
+
 def signup_user(request):
     if request.method == "POST":
-        name = request.POST["name"]
+        name = request.POST["fullname"]
         email = request.POST["email"]
         pass1 = request.POST["pass1"]
         pass2 = request.POST["pass2"]
