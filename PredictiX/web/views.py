@@ -80,10 +80,12 @@ def login_user(request):
 
 @login_required()
 def history(request):
-    return render(request,"web/history.html")
-    # data = MachineRecord.objects.filter(user=request.user)
-    # log = serializers.serialize("json", data)
-    # return HttpResponse(log)
+    data = MachineRecord.objects.filter(user=request.user)
+    log = serializers.serialize("json",data)
+    # for i in log:
+    print(log)
+    return render(request,"web/history.html",{'records':log})
+
 
 
 def logout_user(request):

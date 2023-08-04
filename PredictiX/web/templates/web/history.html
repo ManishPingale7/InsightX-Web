@@ -1,8 +1,8 @@
-{% extends 'web/base.html' %} 
-{% load static %}
-{% block title %}history{% endblock title %} 
-{% block history_active %}current{% endblock history_active %}
+{% extends 'web/base.html' %} {% load static %} 
+{% block title%}history{%endblock title %} 
+{% block history_active %}current{% endblock history_active %} 
 {%block head %}
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
 <link
   rel="stylesheet"
   href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"
@@ -59,45 +59,28 @@
           <th></th>
         </tr>
       </thead>
-      <tr>
-        <td>1</td>
-        <td>Arc Reactor</td>
-        <td>14 Jul 2023</td>
-        <td>Good</td>
-        <td><img src="{% static 'img/more.png' %}" alt="" class="delete" /></td>
-      </tr>
-      <tr>
-        <td>2</td>
-        <td>Bionic Arm</td>
-        <td>16 Jul 2023</td>
-        <td>Excellent</td>
-        <td><img src="{% static '' %}img/more.png" alt="" class="delete" /></td>
-      </tr>
-      <tr>
-        <td>3</td>
-        <td>Invisibility Cloak</td>
-        <td>18 Jul 2023</td>
-        <td>Outstanding</td>
-        <td><img src="{% static '' %}img/more.png" alt="" class="delete" /></td>
-      </tr>
-      <tr>
-        <td>4</td>
-        <td>Hoverboard</td>
-        <td>20 Jul 2023</td>
-        <td>Great</td>
-        <td><img src="{% static '' %}img/more.png" alt="" class="delete" /></td>
-      </tr>
-      <tr>
-        <td>5</td>
-        <td>Mind-Control Device</td>
-        <td>22 Jul 2023</td>
-        <td>Superb</td>
-        <td><img src="{% static '' %}img/more.png" alt="" class="delete" /></td>
-      </tr>
+      <tbody></tbody>
+  
     </table>
   </div>
 </div>
 {% endblock body %} {% block script %}
+<script>
+  let data = "{{records|escapejs}}";
+  let records = JSON.parse(data);
+  for (i in records) {
+    let r1 = `<tr>`+ 
+              `<td id="record_${records[i]["pk"]}">${records[i]["pk"]}</td>`+
+              `<td>${records[i]["fields"]["machine_name"]}</td>`+
+              `<td>${records[i]["fields"]["timestamp"]}</td>`+
+              `<td>${records[i]["fields"]["predictions"][0][0] }</td>`+
+              `<td><img src="{% static '' %}img/more.png" alt="" class="delete" /></td>`+
+              `</tr>`;
+
+    $("#myTable tbody").append(r1);
+    console.log();
+  }
+</script>
 <script src="{% static '' %}js/history.js"></script>
 <script src="{% static '' %}./js/navigation.js"></script>
 {% endblock script %}
