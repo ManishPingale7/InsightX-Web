@@ -59,28 +59,23 @@
           <th></th>
         </tr>
       </thead>
-      <tbody></tbody>
+      <tbody>
+        {% for record in records %}
+        <tr class="row">
+          <td id="record_{{record.id}}">{{forloop.counter}}</td>
+          <td id="record_name_{{record.id}}">{{record.machine_name}}</td>
+          <td id="record_time_{{record.id}}">{{record.timestamp}}</td>
+          <td id="record_status_{{record.id}}">{{record.status}}</td>
+          <td><img src="{% static '' %}img/more.png" alt="" class="delete" /></td>
+        </tr>
+        {% endfor %}
+      </tbody>
   
     </table>
   </div>
 </div>
 {% endblock body %} {% block script %}
-<script>
-  let data = "{{records|escapejs}}";
-  let records = JSON.parse(data);
-  for (i in records) {
-    let r1 = `<tr>`+ 
-              `<td id="record_${records[i]["pk"]}">${records[i]["pk"]}</td>`+
-              `<td>${records[i]["fields"]["machine_name"]}</td>`+
-              `<td>${records[i]["fields"]["timestamp"]}</td>`+
-              `<td>${records[i]["fields"]["predictions"][0][0] }</td>`+
-              `<td><img src="{% static '' %}img/more.png" alt="" class="delete" /></td>`+
-              `</tr>`;
 
-    $("#myTable tbody").append(r1);
-    console.log();
-  }
-</script>
 <script src="{% static '' %}js/history.js"></script>
 <script src="{% static '' %}./js/navigation.js"></script>
 {% endblock script %}

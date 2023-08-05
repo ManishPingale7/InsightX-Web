@@ -8,7 +8,11 @@ const card2 = document.querySelector('.card2')
 const card2head = document.querySelector('.card2-description')
 const card2des = document.querySelector('.card2-head')
 const card2img = document.querySelector('.card2img')
+const tryBtn = document.querySelector("#goto-app-btn")
 
+tryBtn.addEventListener("click",()=>{
+    window.open(location.origin="/predict","_self")
+})
 const options = {
     root:null,
     rootMargin:'0px',

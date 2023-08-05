@@ -10,7 +10,7 @@
     {% block predict_active %}current{% endblock predict_active %}
   {% block body %}
   <div class="page">
-    <form action="dashboard.html" method="">
+    <form action="/predict" method="POST"> {% csrf_token %}
       <div class="container">
         <div class="form-container">
           <div class="input-section">
@@ -20,7 +20,7 @@
                 <input
                   type="text"
                   id="name"
-                  name="name"
+                  name="machine_name"
                   placeholder="Enter Machine Name"
                 />
               </div>
@@ -65,21 +65,21 @@
               <div class="field">
                 <label for="airtemp"> Air Temperature </label>
                 <div class="field-input">
-                  <input type="number" id="airTemp" name="airtemp" />
+                  <input type="number" id="airTemp" name="air_temp" />
                   <span class="unit">c</span>
                 </div>
               </div>
               <div class="field">
                 <label for="processTemp"> Process Temperature </label>
                 <div class="field-input">
-                  <input type="number" id="processTemp" name="processTemp" />
+                  <input type="number" id="processTemp" name="process_temp" />
                   <span class="unit">c</span>
                 </div>
               </div>
               <div class="field">
                 <label for="rotateSpeed"> Rotational Speed </label>
                 <div class="field-input">
-                  <input type="number" id="rotateSpeed" name="rotateSpeed" />
+                  <input type="number" id="rotateSpeed" name="rotational_speed" />
                   <span class="unit">rpm</span>
                 </div>
               </div>
@@ -93,7 +93,7 @@
               <div class="field">
                 <label for="toolWear"> Tool wear </label>
                 <div class="field-input">
-                  <input type="number" id="toolWear" name="toolWear" />
+                  <input type="number" id="toolWear" name="tool_wear" />
                   <span class="unit">min</span>
                 </div>
               </div>

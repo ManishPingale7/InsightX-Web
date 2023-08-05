@@ -20,7 +20,11 @@
                 <span class="details">
                     Harness the future of maintenance with our advanced machine learning algorithm.
                     <div class="explore-btn">
-                        <a href="{% url 'Explore' %}"><button type="button"> Explore <img src="{% static 'img/right-arrow.png' %}" alt=""></button>
+                        <a href="{% url 'Explore' %}">
+                            <button type="button"> 
+                                Explore 
+                                <img  src="{% static 'img/right-arrow.png' %}" alt="">
+                            </button>
                         </a>
                     </div>
                 </span>
@@ -29,7 +33,7 @@
                         <img src="{% static './img/machine.jpg' %}" alt="">
                     </div>
                     <span class="button">
-                        <a href="app.html"><button type="button">Predict Now  <img style="margin-left: 0.25rem;" src="{% static 'img/magic.png' %}" alt=""></button></a>
+                        <a href="{% url 'Predict' %}"><button type="button">Predict Now  <img style="margin-left: 0.25rem;" src="{% static 'img/magic.png' %}" alt=""></button></a>
                     </span>
                 </div>
             </div>
@@ -76,18 +80,16 @@
             
             <footer class="footer-distributed">
                 <div class="footer-right">
-                    <a href="#"><i class="fa fa-facebook"></i></a>
-                    <a href="#"><i class="fa fa-twitter"></i></a>
-                    <a href="#"><i class="fa fa-linkedin"></i></a>
-                    <a href="https://github.com/Saisinare/InsightX" target="_blank" ><i class="fa fa-github"></i></a>
+                    <a href="#"><i style="margin-top:7px;" class="fa fa-facebook"></i></a>
+                    <a href="#"><i style="margin-top:7px;" class="fa fa-twitter"></i></a>
+                    <a href="#"><i style="margin-top:7px;" class="fa fa-linkedin"></i></a>
+                    <a href="https://github.com/Saisinare/InsightX" target="_blank" ><i style="margin-top:7px;" class="fa fa-github"></i></a>
                 </div>
                 <div class="footer-left">
                     <p class="footer-links">
-                        <a class="link-1" href="#">Home</a>
-                        <a href="#">Home</a>
-                        <a href="#">About</a>
-                        <a href="#">Contact Us</a>
-                        <a href="#">Explore</a>
+                        <a class="link-1" href="{% url 'Home' %}">Home</a>
+                        <a href="{% url 'About' %}">About</a>
+                        <a href="{% url 'Explore' %}">Explore</a>
                         <a href="#">Use App</a>
                     </p>
                     <p>insightX  &copy; 2023</p>

@@ -2,9 +2,13 @@ const page2 = document.querySelector("#page2");
 const page3 = document.querySelector("#page3");
 const page4 = document.querySelector("#page4");
 const image = document.querySelector(".img");
+const tryBtn = document.querySelector("#goto-app-btn");
 const description = document.querySelector(".description")
 const modelhead = document.querySelector(".modelhead")
 
+tryBtn.addEventListener("click",()=>{
+  window.open(location.origin+"/predict","_self")
+})
 console.log(image)
 const option = {
   root: null,

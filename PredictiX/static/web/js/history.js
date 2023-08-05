@@ -1,3 +1,10 @@
+const row = document.querySelector(".row");
+
+row.addEventListener('click',()=>{
+  id=row.firstElementChild.id.split("_")[1]
+  window.open(location.origin+"/dashboard/"+id,"_self")
+})
+
 function sortTable(n) {
     var table, rows, switching, i, x, y, shouldSwitch, dir, switchcount = 0;
     table = document.getElementById("myTable");

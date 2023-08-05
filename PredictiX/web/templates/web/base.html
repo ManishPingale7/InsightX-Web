@@ -40,12 +40,15 @@
           >
             <a href="{% url 'About' %}">About</a>
           </li>
+          {% if request.user.is_anonymous %}
           <li class="userlistactionlist">
             <a href="{% url 'Signup' %}" class="userAction" id="signup"
               >Sign Up</a
             >
+           
           </li>
-          <li class="userlistactionlist">
+            {% endif %}
+            <li class="userlistactionlist">
             {% if request.user.is_authenticated %}
             <a href="{% url 'Logout' %}" class="userAction">Logout</a>
             {% else %}
