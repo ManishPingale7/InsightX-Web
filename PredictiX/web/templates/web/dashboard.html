@@ -11,6 +11,9 @@
   rel="stylesheet"
   href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"
 />
+<script>
+const record = JSON.parse("{{record|escapejs}}")[0];
+</script>
 {% endblock head%} {% block body %}
 <div class="page">
   <div class="head">
@@ -18,7 +21,7 @@
       <h1>{{record.machine_name}}</h1>
       <p>{{record.machine_name}}</p>
     </div>
-    <a href="history.html">
+    <a href="{% url 'History' %}">
       <div class="history">
         <img src="{% static './img/recent.png' %}" alt="" />
         Recent
@@ -26,25 +29,25 @@
     </a>
   </div>
   <div class="status">
-    <div class="status-card" id="no-failure">
+    <div class="status-card" >
       <h3>No Failure Rate</h3>
-      <h2></h2>
+      <h2 id="no-failure"></h2>
     </div>
-    <div class="status-card" id="power-failure">
+    <div class="status-card" >
       <h3>Power Failure Rate</h3>
-      <h2>10%</h2>
+      <h2 id="power-failure"></h2>
     </div>
-    <div class="status-card" id="heat-dissipation">
-      <h3>Heat Disssipation Failure Rate</h3>
-      <h2>75%</h2>
+    <div class="status-card" >
+      <h3>Heat Disssipation  Rate</h3>
+      <h2 id="heat-dissipation"></h2>
     </div>
-    <div class="status-card" id="tool-wear">
+    <div class="status-card" >
       <h3>Tool Wear Failure Rate</h3>
-      <h2>10%</h2>
+      <h2 id="tool-wear"></h2>
     </div>
-    <div class="status-card" id="overstrain-failure">
+    <div class="status-card" >
       <h3>Overstrain Failure Rate</h3>
-      <h2>10%</h2>
+      <h2 id="overstrain-failure"></h2>
     </div>
   </div>
   <div class="details">
@@ -65,12 +68,12 @@
           <div class="label">Power Failure</div>
         </div>
         <div class="legend">
-          <div class="color heatfailurecolor"></div>
-          <div class="label">Heat Disssipation</div>
-        </div>
-        <div class="legend">
           <div class="color toolwearfailurecolor"></div>
           <div class="label">Tool Wear</div>
+        </div>
+        <div class="legend">
+          <div class="color heatfailurecolor"></div>
+          <div class="label">Heat Disssipation</div>
         </div>
         <div class="legend">
           <div class="color overstrainfailurecolor"></div>

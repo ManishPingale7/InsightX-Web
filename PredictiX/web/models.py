@@ -25,15 +25,15 @@ class MachineRecord(models.Model):
                 ind = i
         match ind:
             case 0:
-                self.status = f"No Failure ({(self.predictions[0][ind]*100)} %)"
+                self.status = f"No Failure ({(self.predictions[0][ind]*100):.2f} %)"
             case 1:
-                self.status = f"Power Failure ({(self.predictions[0][ind]*100)} %)"
+                self.status = f"Power Failure ({(self.predictions[0][ind]*100):.2f} %)"
             case 2:
-                self.status = f"Tool Failure ({(self.predictions[0][ind]*100)} %)"
+                self.status = f"Tool Failure ({(self.predictions[0][ind]*100):.2f} %)"
             case 3:
-                self.status = f"Overstrain Failure ({(self.predictions[0][ind]*100)} %)"
+                self.status = f"Overstrain Failure ({(self.predictions[0][ind]*100):.2f} %)"
             case 4:
-                self.status = f"Heat Failure ({(self.predictions[0][ind]*100)} %)"
+                self.status = f"Heat Failure ({(self.predictions[0][ind]*100):.2f} %)"
 
         super().save(*args, **kwargs)
 

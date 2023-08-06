@@ -1,12 +1,13 @@
 {% extends 'web/base.html' %} {% load static %} 
-{% block title%}history{%endblock title %} 
-{% block history_active %}current{% endblock history_active %} 
-{%block head %}
+{% block title%}history{%endblock title %} {% block history_active %}current 
+{% endblock history_active %} {%block head %}
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
 <link
   rel="stylesheet"
   href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"
 />
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
 <link rel="stylesheet" href="{% static 'css/history.css' %}" />
 {% endblock head %} {% block body %}
 
@@ -15,12 +16,11 @@
     <h2>Recent Activities</h2>
   </div>
   <div class="filters">
-    <form action="">
-      <input type="search" required />
+    <form>
+      <input type="search" onkeyup="searchTable()" id="search" required />
       <button type="submit" class="submit">
         <img
           src="{% static '' %}img/search-interface-symbol.png"
-          alt=""
           class="search"
         />
       </button>
@@ -66,11 +66,12 @@
           <td id="record_name_{{record.id}}">{{record.machine_name}}</td>
           <td id="record_time_{{record.id}}">{{record.timestamp}}</td>
           <td id="record_status_{{record.id}}">{{record.status}}</td>
-          <td><img src="{% static '' %}img/more.png" alt="" class="delete" /></td>
+          <td class="options-btn" id="record_status_{{record.id}}">
+            <img src="{% static '' %}img/more.png" alt="" class="delete" />
+          </td>
         </tr>
         {% endfor %}
       </tbody>
-  
     </table>
   </div>
 </div>

@@ -27,12 +27,12 @@ medium.addEventListener('click',()=>{
 })
 
 model1.addEventListener('click',()=>{
-    model.value="Balanced Bagging"
+    model.value=0
     model1.classList.add('model-selected')
     model2.classList.remove('model-selected')
 })
 model2.addEventListener('click',()=>{
     model2.classList.add('model-selected')
     model1.classList.remove('model-selected')
-    model.value="Balanced Randome Forest"
+    model.value=1
 })

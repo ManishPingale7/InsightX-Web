@@ -1,9 +1,11 @@
 from django.core import serializers
 from django.shortcuts import render, redirect
+from django.urls import reverse
 from django.http import HttpResponse, JsonResponse
 from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.models import User
 from django.contrib.auth.decorators import login_required
+import json
 
 from ml import Interface
 from .models import MachineRecord
@@ -29,16 +31,23 @@ def explore(request):
 def plots(request):
     return render(request, "web/graph.html")
 
+
+def delete_record(request,id):
+    if request.method == "DELETE":
+        print(id)
+
 def dashboard(request,id):
     record = MachineRecord.objects.filter(id=id,user=request.user)
     if record:
-        return render(request,"web/dashboard.html",{"record":record[0]})
+        record = serializers.serialize('json',record)
+        return render(request,"web/dashboard.html",{"record":record})
     return redirect("Home")
 
 @login_required()
 def predict(request):
     if request.method == "POST":
         # Input
+        model = request.POST["model"]
         air_temp = request.POST["air_temp"]
         process_temp = request.POST["process_temp"]
         rotational_speed = request.POST["rotational_speed"]
@@ -61,13 +70,13 @@ def predict(request):
                  rotational_speed, torque,
                  tool_wear, quality]]
 
-        preds = Interface.predict(list)
+        preds = Interface.predict(list,model)
         record = MachineRecord(machine_name=name, user=request.user, air_temp=air_temp,
                                process_temp=process_temp, rotational_speed=rotational_speed,
                                torque=torque, tool_wear=tool_wear,
                                quality=quality, predictions=preds.tolist())
         record.save()
-        return redirect("History")
+        return redirect("Dashboard",id=record.id)
     
     return render(request, "web/predict.html")
 
