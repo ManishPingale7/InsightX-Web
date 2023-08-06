@@ -34,7 +34,11 @@ def plots(request):
 
 def delete_record(request,id):
     if request.method == "DELETE":
-        print(id)
+        record = MachineRecord.objects.filter(id=id)
+        if record:
+            record[0].delete()
+            return HttpResponse("true")
+        return HttpResponse("false")
 
 def dashboard(request,id):
     record = MachineRecord.objects.filter(id=id,user=request.user)

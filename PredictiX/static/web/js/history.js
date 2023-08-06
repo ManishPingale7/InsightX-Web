@@ -1,10 +1,39 @@
 const row = document.querySelectorAll(".row");
 const optionBtn = document.querySelectorAll(".options-btn");
 
+function getCookie(name) {
+  let cookieValue = null;
+  if (document.cookie && document.cookie !== "") {
+    const cookies = document.cookie.split(";");
+    for (let i = 0; i < cookies.length; i++) {
+      const cookie = cookies[i].trim();
+      // Does this cookie string begin with the name we want?
+      if (cookie.substring(0, name.length) === name) {
+        cookieValue = decodeURIComponent(cookie.substring(name.length + 1));
+        break;
+      }
+    }
+  }
+  return cookieValue;
+}
+
 optionBtn.forEach((e) => {
   e.addEventListener("click", () => {
-    id=e.id.split("_")[2];
-   
+    id = e.id.split("_")[2];
+    $.ajax({
+      url: "/delete-record/" + id,
+      type: "DELETE",
+      headers: {
+        "X-CSRFToken": getCookie("csrftoken"),
+      },
+      success: function (response) {
+        if (response == "true") window.location.reload();
+        else if (response == "false") alert("Failed to delete a record");
+      },
+      error: function (xhr, status, error) {
+        alert("Failed to delete a record");
+      },
+    });
   });
 });
 
