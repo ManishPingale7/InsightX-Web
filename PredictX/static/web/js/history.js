@@ -37,12 +37,12 @@ optionBtn.forEach((e) => {
   });
 });
 
-// row.forEach((e) => {
-//   e.addEventListener("click", () => {
-//     id = e.firstElementChild.id.split("_")[1];
-//     window.open(location.origin + "/dashboard/" + id, "_self");
-//   });
-// });
+row.forEach((e) => {
+  e.addEventListener("click", () => {
+    id = e.firstElementChild.id.split("_")[1];
+    window.open(location.origin + "/dashboard/" + id, "_self");
+  });
+});
 
 function sortTable(n) {
   var table,
