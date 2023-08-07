@@ -54,6 +54,14 @@ function sortTable(n) {
     shouldSwitch,
     dir,
     switchcount = 0;
+      var headerCells = table.getElementsByTagName("TH");
+  for (var h = 0; h < headerCells.length; h++) {
+    headerCells[h].classList.remove("asc", "desc");
+  }
+  
+  // Toggle arrow indicator on the clicked header
+  headerCells[n].classList.toggle(dir);
+  
   table = document.getElementById("myTable");
   switching = true;
   dir = "asc";

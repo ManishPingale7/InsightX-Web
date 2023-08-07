@@ -200,9 +200,14 @@ header {
 #signup {
   margin-left: 25vw;
 }
-
+#logout{
+  margin-left: 25vw;
+}
 @media (max-width: 768px) {
   #signup {
+    margin-left: 0;
+  }
+  #logout{
     margin-left: 0;
   }
   nav {

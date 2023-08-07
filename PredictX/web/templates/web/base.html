@@ -50,7 +50,7 @@
             {% endif %}
             <li class="userlistactionlist">
             {% if request.user.is_authenticated %}
-            <a href="{% url 'Logout' %}" class="userAction">Logout</a>
+            <a href="{% url 'Logout' %}" class="userAction" id="logout" >Logout</a>
             {% else %}
             <a href="{% url 'Login' %}" class="userAction">Login</a>
             {% endif %}

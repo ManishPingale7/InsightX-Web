@@ -55,9 +55,9 @@ button{
   }
   .ui-img{
     width: 80rem;
-    margin-bottom: -100rem;
+    margin-top: 50rem;
     opacity: 0;
-    transition: all ease-in 2s;
+    transition: all ease-in 1.5s;
     border-radius: 1rem;
     box-shadow:  0 4px 8px 0 rgba(4, 0, 255, 0.596), 0 6px 20px 0 rgba(38, 0, 255, 0.507);
   }
@@ -227,7 +227,7 @@ button{
     }
 }
 .button{
-    margin-top: 5rem;
+    margin-top: 3rem;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -324,7 +324,7 @@ button{
   font-size: 30px;
 }
 .ui-image-slideUp{
-  margin-bottom:0 ;
+  margin-top:0 ;
   opacity: 1;
 }
 .ui-head-slidDown{
@@ -412,10 +412,10 @@ button{
   .description{
     width: 93vw;
   }
-  .ui-img{
+  /* .ui-img{
     opacity: 1;
     margin-bottom: 0;
-  }
+  } */
     .hero-section .hero-head{
         font-size: 45px;
     }

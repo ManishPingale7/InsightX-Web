@@ -21,31 +21,37 @@ const options = {
 let obeserver = new IntersectionObserver((entries)=>{
     entries.forEach(entry => {
         if(entry.isIntersecting){
-            if(entry.target.classList[1]=='ui-feature'){
-                uiImg.classList.add('ui-image-slideUp')
-                entry.target.classList.add('active-animation')
-            }
+
             if(entry.target.classList[1]=='card1'){
                 card1head.classList.add('card-des-animation')
                 card1des.classList.add('card-des-animation')
                 card1img.classList.add('card-img-animation');
             }
-            if(entry.target.classList[1]=='card2'){
-                card2head.classList.add('card2-des-animation')
-                card2des.classList.add('card2-des-animation')
-                card2img.classList.add('card2-img-animation');
-            }
         }
         else{
             card1img.classList.remove('card-img-animation');
-            uiImg.classList.remove('ui-image-slideUp')
-            entry.target.classList.remove('active-animation')
             card1head.classList.remove('card-des-animation')
             card1des.classList.remove('card-des-animation')
         }
     })
     },options)
-    
+
+    let ui_obeserver = new IntersectionObserver((entries)=>{
+        entries.forEach(entry => {
+            if(entry.isIntersecting){
+                if(entry.target.classList[1]=='ui-feature'){
+                    uiImg.classList.add('ui-image-slideUp')
+                    entry.target.classList.add('active-animation')
+                }
+            }
+            else{
+
+                uiImg.classList.remove('ui-image-slideUp')
+                entry.target.classList.remove('active-animation')
+                }
+        })
+        },options)
+
     let obeserver2 = new IntersectionObserver((entries)=>{
         entries.forEach(entry => {
             if(entry.isIntersecting){
@@ -65,6 +71,6 @@ let obeserver = new IntersectionObserver((entries)=>{
         })
         },options)
 
-obeserver.observe(uifeature)
+ui_obeserver.observe(uifeature)
 obeserver.observe(card1)
 obeserver2.observe(card2)
