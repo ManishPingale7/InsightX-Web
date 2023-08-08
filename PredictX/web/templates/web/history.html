@@ -17,13 +17,7 @@
   </div>
   <div class="filters">
     <form>
-      <input type="search" onkeyup="searchTable()" id="search" required />
-      <button type="submit" class="submit">
-        <img
-          src="{% static '' %}img/search-interface-symbol.png"
-          class="search"
-        />
-      </button>
+      <input type="search" onkeyup="searchTable()" id="search" placeholder="Search Predicted History" required />
     </form>
   </div>
   <div class="table">
@@ -31,29 +25,33 @@
       <thead>
         <tr>
           <th onclick="sortTable(0)">
-            Id <img src="{% static '' %}img/arrow-up.png" alt="" /><img
+            Id <img src="{% static '' %}img/arrow-up.png" alt="" class="ascArrow"/><img
               src="{% static '' %}img/down-filled-triangular-arrow.png"
               alt=""
+              class="dscArrow"
             />
           </th>
           <th onclick="sortTable(1)">
             Machine Name
-            <img src="{% static '' %}img/arrow-up.png" alt="" /><img
+            <img src="{% static '' %}img/arrow-up.png" alt="" class="ascArrow"/><img
               src="{% static '' %}img/down-filled-triangular-arrow.png"
               alt=""
+              class="dscArrow"
             />
           </th>
           <th onclick="sortTable(2)">
-            Test Date <img src="{% static '' %}img/arrow-up.png" alt="" /><img
+            Test Date <img src="{% static '' %}img/arrow-up.png" alt="" class="ascArrow"/><img
               src="{% static '' %}img/down-filled-triangular-arrow.png"
               alt=""
+              class="dscArrow"
             />
           </th>
           <th onclick="sortTable(3)">
             Overall Status
-            <img src="{% static '' %}img/arrow-up.png" alt="" /><img
+            <img src="{% static '' %}img/arrow-up.png" alt="" class="ascArrow"/><img
               src="{% static '' %}img/down-filled-triangular-arrow.png"
               alt=""
+              class="dscArrow"
             />
           </th>
           <th></th>

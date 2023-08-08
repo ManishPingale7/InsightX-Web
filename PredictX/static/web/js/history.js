@@ -43,6 +43,19 @@ row.forEach((e) => {
     window.open(location.origin + "/dashboard/" + id, "_self");
   });
 });
+const removeIndicatorArrow = () =>{
+    document.querySelectorAll('.ascArrow').forEach(node => {
+      node.style.visibility = "hidden";
+      node.style.position= "absolute";
+      node.style.margin = "0.5rem"
+    })
+    document.querySelectorAll('.dscArrow').forEach(node => {
+      node.style.visibility = "hidden"
+      node.style.position= "absolute";
+      node.style.margin = "0.5rem"
+  })
+}
+removeIndicatorArrow()
 
 function sortTable(n) {
   var table,
@@ -54,17 +67,17 @@ function sortTable(n) {
     shouldSwitch,
     dir,
     switchcount = 0;
-      var headerCells = table.getElementsByTagName("TH");
+
+
+  table = document.querySelector('table')
+  var headerCells = table.querySelectorAll("th");
   for (var h = 0; h < headerCells.length; h++) {
     headerCells[h].classList.remove("asc", "desc");
   }
-  
-  // Toggle arrow indicator on the clicked header
-  headerCells[n].classList.toggle(dir);
-  
   table = document.getElementById("myTable");
   switching = true;
   dir = "asc";
+
   while (switching) {
     switching = false;
     rows = table.rows;
@@ -72,18 +85,25 @@ function sortTable(n) {
       shouldSwitch = false;
       x = rows[i].getElementsByTagName("TD")[n];
       y = rows[i + 1].getElementsByTagName("TD")[n];
-      console.log(`I is: ${i} x is ${x.innerHTML} and y is ${y.innerHTML}\n`);
       if (
+
         dir == "asc" &&
         x.innerHTML.toLowerCase() > y.innerHTML.toLowerCase()
       ) {
         shouldSwitch = true;
+        removeIndicatorArrow()
+        headerCells[n].querySelector(".ascArrow").style.visibility = "hidden";
+        headerCells[n].querySelector(".dscArrow").style.visibility = "visible";
+
         break;
       } else if (
         dir == "desc" &&
         x.innerHTML.toLowerCase() < y.innerHTML.toLowerCase()
       ) {
         shouldSwitch = true;
+        removeIndicatorArrow()
+        headerCells[n].querySelector(".dscArrow").style.visibility = "hidden";
+        headerCells[n].querySelector(".ascArrow").style.visibility = "visible";
         break;
       }
     }

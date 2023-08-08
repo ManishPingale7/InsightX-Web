@@ -16,7 +16,6 @@
     display: flex;
     color: #ccc;
     align-items: center;
-    /* justify-content: ; */
     width: 100%;
 }
 
@@ -29,9 +28,6 @@
     box-shadow: 0 .4rem .8rem #0005;
 
     overflow: hidden;
-}
-*{
-    transition: all ease-in 0.5s;
 }
 table {
     width: 100%;
@@ -68,10 +64,6 @@ tbody tr {
     transition: all ease-in 0.3s;
 }
 
-tbody tr.hide {
-    opacity: 0;
-    transform: translateX(100%);
-}
 
 tbody tr:hover {
     background-color: #fff6 !important;
@@ -84,24 +76,7 @@ tbody tr:hover {
 .delete:hover{
     background-color: #5a5757;
 }
-tbody tr td,
-tbody tr td p,
-tbody tr td img {
-    transition: .2s ease-in-out;
-}
 
-tbody tr.hide td,
-tbody tr.hide td p {
-    padding: 0;
-    font: 0 / 0 sans-serif;
-    transition: .2s ease-in-out .5s;
-}
-
-tbody tr.hide td img {
-    width: 0;
-    height: 0;
-    transition: .2s ease-in-out .5s;
-}
 
 
 
@@ -114,16 +89,15 @@ tbody tr.hide td img {
 .filters{
     height: 10vh;
     display: flex;
-    justify-content: flex-start;
-    padding-left:18vw;
+    justify-content: center;
     align-items: center;
     /* width: 10vh; */
-    width:100vw;
+    width:88rem;
     color: black;
     margin-bottom: 3vh;
 }
-.filters input {
-    width: 100%;
+.filters form input {
+    width: 80rem;
     height: 2.5rem;
     border-radius: 0.2rem;
     padding: 1rem;
@@ -134,8 +108,10 @@ tbody tr.hide td img {
     outline: none;
 }
 .filters form {
+
     display: flex;
-    column-gap: 0.3rem;
+    align-items: center;
+    justify-content: center;
 }
 .search{
     height: 1.4rem;
@@ -163,19 +139,4 @@ tbody tr.hide td img {
 thead th:hover {
     color: #d8d8f3;
 }
-
-thead th.active span.icon-arrow{
-    background-color: #6c00bd;
-    color: #fff;
-}
-
-
-
-thead th.active,tbody td.active {
-    color: #6c00bd;
-}
-
-
-
-
 
