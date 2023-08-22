@@ -4,9 +4,6 @@
   padding-right: 3vw;
   padding-bottom: 18vh;
   min-height: 100vh;
-  /* background-color: rgb(31, 31, 32); */
-  /* background-color: rgb(8, 7, 14);  */
-  /* background-color: rgb(4, 0, 255); */
   background: linear-gradient(35deg, rgb(0, 0, 0), black);
   color: white;
 }

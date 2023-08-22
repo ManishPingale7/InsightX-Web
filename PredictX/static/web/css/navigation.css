@@ -240,7 +240,7 @@ header {
     top: 6rem;
     height: 80vh;
     background-color: black;
-    left: -100%;
+    left: -150%;
     flex-direction: column;
     align-items: center;
     width: 100%;

@@ -35,11 +35,6 @@
           >
             <a href="{% url 'Explore' %}">Explore</a>
           </li>
-          <li
-            class="navitem {% block about_active %}{% endblock about_active %}"
-          >
-            <a href="{% url 'About' %}">About</a>
-          </li>
           {% if request.user.is_anonymous %}
           <li class="userlistactionlist">
             <a href="{% url 'Signup' %}" class="userAction" id="signup"

@@ -134,7 +134,7 @@ form{
     padding: 1vh 0;
     align-items: center;
     height: 24vh;
-    background: radial-gradient(circle,blue,rgb(55, 43, 226));
+    background: none;
     border-radius: 1rem;
     /* background-color: #ccc; */
     justify-content: center;
@@ -146,7 +146,8 @@ font-size: 18px;
 font-family: 'myFont';
 border-radius: 0.5rem;
 border: none;
-background: radial-gradient(circle,rgb(8, 8, 8),rgb(2, 2, 2));
+background:linear-gradient(320deg,rgb(0, 0, 0),rgba(0, 0, 0, 0.829));
+box-shadow:  0 4px 8px 0 rgba(0, 0, 12, 0.596), 0 6px 20px 0 rgba(0, 0, 0, 0.507);
 font-weight: bold;
 color: #ccc;
 transition: all 1s ease-out;
@@ -164,4 +165,43 @@ transition: all 1s ease-out;
     border-top-left-radius: 0;
     border-bottom-left-radius: 0;
     width: 1rem;
+}
+@media(max-width:1000px){
+    .container{
+        height: fit-content;
+    }
+    .model-selection{
+        width: 21rem;
+        font-size: 0.8rem;
+    }   
+    #name{
+        width: 80vw;
+    }
+    .input-section{
+        flex-direction: column;
+        
+    }
+    .input-fields{
+        flex-direction: column;
+        flex-wrap: nowrap;
+        width: 100vw;
+        height: fit-content;
+        justify-content: flex-start;
+        padding: 0;
+        align-items: flex-start;
+        margin: 0;
+        margin-top: 1rem;
+        row-gap: 1rem;
+    }
+    .field-input{
+        width: 80vw;
+    }
+    .field-input input{
+        width: 80%;
+    }
+    .submit-section{
+        height: fit-content;
+        width: 80vw;
+
+    }
 }

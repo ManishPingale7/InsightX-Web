@@ -18,15 +18,22 @@
             </div>
             <div class="hero-footer">
                 <span class="details">
-                    Harness the future of maintenance with our advanced machine learning algorithm.
+                    <div class="txt"> Harness the future of maintenance with our advanced machine learning algorithm.</div>
                     <div class="explore-btn">
                         <a href="{% url 'Explore' %}">
-                            <button type="button"> 
+                            <button type="button" > 
                                 Explore 
                                 <img  src="{% static 'img/right-arrow.png' %}" alt="">
                             </button>
                         </a>
                     </div>
+                    <div class="predict-btn-container">
+                    <a href="{% url 'Explore' %}">
+                        <button type="button" class="predict-btn"> 
+                            Try InsightX Now 
+                        </button>
+                    </a>
+                </div>
                 </span>
                 <div class="predict-card">
                     <div class="photo">
@@ -69,7 +76,7 @@
                 <div class="ui-fe-head">
                     User-friendly Interface
                 </div>
-                    <img src="{% static './img/addonBackground.JPG' %}" class="ui-img" alt="">
+                    <img src="{% static './img/screen.JPG' %}" class="ui-img" alt="">
             </div>
         </div>
         <div class="lastpage">

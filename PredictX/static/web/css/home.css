@@ -7,7 +7,7 @@ button{
 }
 .hero-section{
     height: 100vh;
-    width: 100vw;
+    width: 110vw;
     background-color: black;
   }
   .features{
@@ -75,8 +75,6 @@ button{
     color:#ccc;
     display: flex;
     flex-direction: column;
-    /* justify-content: center; */
-    /* align-items: center; */
     text-align: center;
     width: 40%;
 
@@ -158,7 +156,6 @@ button{
   }
 
   .hero-section .hero-head .heading{
-    /* margin-top: 45vh; */
     width: 65vw;
     word-wrap: break-word;
     position: absolute;
@@ -348,8 +345,24 @@ button{
 .card-img-animation{
   margin-right: 0;
 }
-
+.predict-btn-container button {
+  display: none;
+}
 @media(max-width:1000px){
+  .ui-image-slideUp{
+    margin-top:13rem;
+    margin-left: -53rem;
+    width: 100rem;
+    transform: rotate(-30deg);
+    opacity: 1;
+  }
+  .details{
+    width:110vw;
+    align-items: center;
+  }
+  .heading{
+    font-size: 36px;
+  }
   .hero-section .hero-head .heading :nth-child(1){
     animation-name: none;
   }
@@ -361,12 +374,20 @@ button{
   .hero-section .hero-head .heading :nth-child(5){
     animation-name: none;
   }
+  .details .txt{
+    display: none;
+  }
   .heading{
     animation-name: headingin;
     animation-delay: 250ms;
     animation-duration: 1s;
     animation-fill-mode: forwards;
     animation-iteration-count: 1;
+    padding: 1rem;
+  }
+  .hero-section .hero-footer{
+    display: flex;
+    height: 50vh;
   }
   .details{
     animation-name: headingin;
@@ -375,12 +396,21 @@ button{
     animation-fill-mode: forwards;
     animation-iteration-count: 1;
   }
+  .predict-btn-container button{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 0.5rem;
 
+    background: #0e0f0e;
+    border: 1px solid black;
+
+  }
   .card-description{
     width: 90vw ;
   }
   .card-head{
-    font-size: 34px;
+    font-size: 16px;
     width: 90vw ;
   }
   .card-head{
@@ -412,10 +442,6 @@ button{
   .description{
     width: 93vw;
   }
-  /* .ui-img{
-    opacity: 1;
-    margin-bottom: 0;
-  } */
     .hero-section .hero-head{
         font-size: 45px;
     }
@@ -444,6 +470,7 @@ button{
     .foot h2{
       font-size: 34px;
     }
+
 
   }
 @media(max-width:414px){
