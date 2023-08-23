@@ -8,6 +8,7 @@
   rel="stylesheet"
   href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"
 />
+<link rel="stylesheet" href="{% static 'css/footer.css' %}">
 {% endblock head %} {% block body %}
 <div class="presentation">
   <div class="page" id="page1">
@@ -17,7 +18,6 @@
       industrial machine operations"
     </p>
     <button type="button" id="goto-app-btn">Try insightX Now</button>
-    <!-- <img src="/img/presentationrobots.png" alt="" id="introImg"> -->
   </div>
   <div class="page page2" id="page2">
     <div class="image">
@@ -95,7 +95,26 @@
       </div>
     </div>
   </div>
+  <footer class="footer-distributed">
+    <div class="footer-right">
+        <a href="#"><i style="margin-top:7px;" class="fa fa-facebook"></i></a>
+        <a href="#"><i style="margin-top:7px;" class="fa fa-twitter"></i></a>
+        <a href="#"><i style="margin-top:7px;" class="fa fa-linkedin"></i></a>
+        <a href="https://github.com/Saisinare/InsightX" target="_blank" ><i style="margin-top:7px;" class="fa fa-github"></i></a>
+    </div>
+    <div class="footer-left">
+        <p class="footer-links">
+            <a class="link-1" href="{% url 'Home' %}">Home</a>
+            <a href="{% url 'About' %}">About</a>
+            <a href="{% url 'Explore' %}">Explore</a>
+            <a href="#">Use App</a>
+        </p>
+        <p>insightX  &copy; 2023</p>
+    </div>
+  
+  </footer>
 </div>
+
 {% endblock body %} {% block script %}
 <script src="{% static 'js/navigation.js' %}"></script>
 <script src="{% static 'js/explore.js' %}"></script>

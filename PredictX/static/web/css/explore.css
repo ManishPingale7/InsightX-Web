@@ -218,3 +218,40 @@ html {
     margin-top: 0;
   }
 }
+
+@media (max-width: 1000px) {
+  #page1 h1 {
+    font-size: 2rem;
+  }
+  #page1 p {
+    padding: 0 3rem;
+    text-align: center;
+    font-size: 1rem;
+  }
+  #goto-app-btn {
+    padding: 1rem 5rem;
+  }
+  #page2 .image{
+    display: none;
+  }
+  #page2{
+    flex-direction: column;
+  }
+  .feature-card {
+    width: 100vw;
+  }
+  #page3 h1{
+    font-size: 5rem;
+    text-shadow: -0.3px -0.3px 0 #505052, 0.3px -0.3px 0 #505052, -0.3px 0.3px 0 #505052,
+      0.3px 0.3px 0 #505052;
+  }
+  #page4{
+    height: auto;
+    flex-direction: column;
+  }
+  .model-card {
+    padding-bottom: 1rem;
+    margin-bottom: 1rem;
+    width: fit-content;
+  }
+}
