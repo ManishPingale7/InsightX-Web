@@ -168,7 +168,12 @@ transition: all 1s ease-out;
 }
 @media(max-width:1000px){
     .container{
+        overflow: hidden;
         height: fit-content;
+    }
+    .form-container{
+        padding: 0;
+        padding-left: 2rem;
     }
     .model-selection{
         width: 21rem;

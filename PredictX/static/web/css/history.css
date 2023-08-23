@@ -80,18 +80,12 @@ tbody tr:hover {
 
 
 
-@media (max-width: 1000px) {
-    td:not(:first-of-type) {
-        min-width: 12.1rem;
-    }
-}
 
 .filters{
     height: 10vh;
     display: flex;
     justify-content: center;
     align-items: center;
-    /* width: 10vh; */
     width:88rem;
     color: black;
     margin-bottom: 3vh;
@@ -138,5 +132,27 @@ tbody tr:hover {
 
 thead th:hover {
     color: #d8d8f3;
+}
+@media (max-width: 1000px) {
+    #search {
+        width: 80vw;
+    }
+    th{
+        font-size: 0.6rem;
+    }
+    td{
+        padding: 0.3rem 0.5rem;
+        font-size: 0.6rem;
+    }
+
+    .delete{
+        height: 0.9rem;
+    }
+    .filters{
+        width: 100vw;
+    }
+    .filters form input{
+        width: 100%;
+    }
 }
 

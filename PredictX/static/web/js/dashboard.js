@@ -7,6 +7,7 @@ const heatFail = document.getElementById("heat-dissipation");
 const toolFail = document.getElementById("tool-wear");
 const strainFail = document.getElementById("overstrain-failure");
 
+
 gradientBg.addColorStop(0, "blue");
 gradientBg.addColorStop(1, "rgb(100, 0, 255)");
 const data = [
@@ -56,7 +57,6 @@ heatFail.innerText = data[4].ratio.toString().slice(0,4) + "%";
       datasets: [
         {
           data: data.map((row) => row.ratio),
-          // backgroundColor: ['rgb(13, 66, 241)','rgb(13, 66, 241)','rgb(13, 66, 241)','rgb(13, 66, 241)','rgb(13, 66, 241)'],
           backgroundColor: [
             "#ffc154",
             "orangered",
@@ -64,7 +64,7 @@ heatFail.innerText = data[4].ratio.toString().slice(0,4) + "%";
             "#4F3F70",
             "#1F75FE",
           ],
-          barThickness: 120,
+          barThickness: (window.innerWidth>1000)?120:50,
           borderRadius: 10,
           borderWidth: 2,
           color: "white",

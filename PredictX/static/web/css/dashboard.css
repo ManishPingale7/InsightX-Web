@@ -19,13 +19,13 @@
   align-items: center;
   justify-content: center;
   text-decoration: none;
+  padding: 2rem;  
   column-gap: 0.3rem;
-  padding: 1rem;
   transition: all 0.5s ease-in-out;
   border-radius: 1rem;
 }
 .history:hover {
-  background-color: #10161f;
+  color: bisque;
 }
 .head a {
   text-decoration: none;
@@ -117,4 +117,46 @@ h3 {
 }
 .overstrainfailurecolor {
   background-color: #4f3f70;
+}
+@media(max-width:1000px){
+  .page {
+    padding-top: 10vh;
+    display: flex;
+    flex-direction: column-reverse;
+  }
+  .status{
+    flex-wrap: wrap;
+    row-gap: 0.7rem;
+  }
+  .status-card{
+    width: 40%;
+  }
+  .details{
+    flex-wrap: wrap;
+    flex-direction: column-reverse;
+    height: fit-content;
+    row-gap: 1rem;
+    margin-bottom: 1rem;
+  }
+  .details .bargraph{
+    width: 92vw;
+    height: fit-content;
+  }
+  .details .doughnutgraph{
+    height: fit-content;
+    width: 85vw;
+    flex-direction: column;
+  }
+  .status{
+    height: fit-content;
+  }
+  .status-card{
+    height: fit-content;
+    font-size: small;
+    width: 92vw;
+  }
+  .doughnutgraph .graph{
+    display: flex;
+    width: 100%;
+  }
 }

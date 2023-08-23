@@ -13,6 +13,7 @@
   @media (max-width:1000px) {
     .footer-distributed {
       padding: 20px 40px;
+      height: fit-content;
     }
     .foot #goto-app-btn{
       width: 20rem;
