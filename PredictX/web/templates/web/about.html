@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    
+    <form action="/diagnose" method="POST" enctype="multipart/form-data">
+      {% csrf_token %}
+      <h4>Vibrations CSV</h4>
+      <input type="file" name="vib_file" eaccept=".csv" />
+      <br />
+
+      <h4>Enter Power Usage</h4>
+      <select name="power" id="">
+        <option value="0">0</option>
+        <option value="200">200W</option>
+        <option value="400">400W</option>
+      </select>
+      <button type="submit">Diagnose!</button>
+    </form>
+  </body>
+</html>

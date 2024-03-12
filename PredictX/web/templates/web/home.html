@@ -1,0 +1,105 @@
+{% extends 'web/base.html' %}
+{% load static %}
+
+    {% block title %}InsightX{% endblock title %}
+    {% block head %}
+    <link rel="stylesheet" href="{% static 'css/home.css' %}">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    {% endblock head %}
+
+    {% block home_active %}current{% endblock home_active %}
+   {% block body %}
+    <div class="hero-section">
+            <div class="hero-head">
+                <div class="heading">
+                    <span>Power Up Your</span><br><span>Maintenance Strategy with</span>
+                 <br><span>Predictive Machinery Analytics</span>
+            </div>
+            </div>
+            <div class="hero-footer">
+                <span class="details">
+                    Harness the future of maintenance with our advanced machine learning algorithm.
+                    <div class="explore-btn">
+                        <a href="{% url 'Explore' %}">
+                            <button type="button"> 
+                                Explore 
+                                <img  src="{% static 'img/right-arrow.png' %}" alt="">
+                            </button>
+                        </a>
+                    </div>
+                </span>
+                <div class="predict-card">
+                    <div class="photo">
+                        <img src="{% static './img/machine.jpg' %}" alt="">
+                    </div>
+                    <div class="button">
+                        <a href="{% url 'Predict' %}"><button type="button">Predict Now  <img style="margin-left: 0.25rem;" src="{% static 'img/magic.png' %}" alt=""></button></a>
+                    </div>
+                </div>
+            </div>
+            </div>
+            <div class="feature">
+            <div class="features">
+                <div class="card card1">
+                    <div class="description">                    
+                        <div class="card-head card1-head">
+                            Accurate Predictions
+                        </div>
+                        <div class="card-description card1-description">
+                            Our algorithm leverages sophisticated data analysis techniques to provide <br>highly reliable and precise machine failure predictions.
+                        </div>
+                    </div>
+                    <div class="card-img card1-img"><img src="{% static './img/prediction.png' %}" alt="" class="card1img"></div>
+                </div>
+            </div>
+            <div class="features feature2">
+                <div class="card card2">
+                    <div class="card-img"><img class="card2img" src="{% static './img/monitoring.png' %}" alt="" class="card2img"></div>
+                    <div class="description ">                    
+                        <div class="card-head card2-head">
+                            Real-time Monitoring
+                        </div>
+                        <div class="card-description card2-description">
+                            Stay on top of the condition of your machines with real-time monitoring,<br> ensuring prompt action can be taken if any anomalies are detected.
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="features ui-feature ">
+                <div class="ui-fe-head">
+                    User-friendly Interface
+                </div>
+                    <img src="{% static './img/addonBackground.JPG' %}" class="ui-img" alt="">
+            </div>
+        </div>
+        <div class="lastpage">
+            <div class="foot">
+                <p><h2>Unlock The Future</h2> <span>Predict machine failures with precision. <br>Try our algorithm-powered tool now</span></p>
+                <button type="button" id="goto-app-btn"> Try insightX Now </button>
+            </div>
+            
+            <footer class="footer-distributed">
+                <div class="footer-right">
+                    <a href="#"><i style="margin-top:7px;" class="fa fa-facebook"></i></a>
+                    <a href="#"><i style="margin-top:7px;" class="fa fa-twitter"></i></a>
+                    <a href="#"><i style="margin-top:7px;" class="fa fa-linkedin"></i></a>
+                    <a href="https://github.com/Saisinare/InsightX" target="_blank" ><i style="margin-top:7px;" class="fa fa-github"></i></a>
+                </div>
+                <div class="footer-left">
+                    <p class="footer-links">
+                        <a class="link-1" href="{% url 'Home' %}">Home</a>
+                        <a href="{% url 'About' %}">About</a>
+                        <a href="{% url 'Explore' %}">Explore</a>
+                        <a href="#">Use App</a>
+                    </p>
+                    <p>insightX  &copy; 2023</p>
+                </div>
+    
+            </footer>
+        </div>
+    </div>
+{% endblock body %}
+{% block script %}
+<script src="{% static './js/navigation.js' %}"></script>
+<script src="{% static './js/scrollanimation.js' %}"></script>
+{% endblock script %}

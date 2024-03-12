@@ -1,0 +1,113 @@
+{% extends 'web/base.html' %}
+  {% load static %}
+    {% block title %}Predict{% endblock title %} {% block head %}
+    <link rel="stylesheet" href="{% static 'css/app.css' %}" />
+
+    <script
+      src="https://kit.fontawesome.com/yourcode.js"
+      crossorigin="anonymous"></script>
+    {% endblock head %}
+    {% block predict_active %}current{% endblock predict_active %}
+  {% block body %}
+  <div class="page">
+    <form action="/predict" method="POST"> {% csrf_token %}
+      <div class="container">
+        <div class="form-container">
+          <div class="input-section">
+            <div class="selection-fields">
+              <label for="name"> Name </label>
+              <div class="field">
+                <input
+                  type="text"
+                  id="name"
+                  name="machine_name"
+                  placeholder="Enter Machine Name"
+                />
+              </div>
+              <label for="type">Model</label>
+              <div class="field">
+                <input
+                  type="number"
+                  name="model"
+                  id="model"
+                  value="Balanced Bagging"
+                  readonly
+                  hidden
+                />
+                <div class="model-selection">
+                  <div class="model-option model-selected" id="model1">
+                    Balanced Bagging
+                  </div>
+                  <div class="model-option" id="model2">
+                    Balanced Random Forest
+                  </div>
+                </div>
+              </div>
+
+              <div class="field">
+                <label for="type">Type</label><br />
+                <input
+                  type="text"
+                  name="type"
+                  id="type"
+                  value="low"
+                  readonly
+                  hidden
+                />
+                <div class="type-selection">
+                  <div class="option type-selected" id="low">low</div>
+                  <div class="option" id="medium">Medium</div>
+                  <div class="option" id="high">High</div>
+                </div>
+              </div>
+            </div>
+            <div class="input-fields">
+              <div class="field">
+                <label for="airtemp"> Air Temperature </label>
+                <div class="field-input">
+                  <input type="number" id="airTemp" name="air_temp" />
+                  <span class="unit">c</span>
+                </div>
+              </div>
+              <div class="field">
+                <label for="processTemp"> Process Temperature </label>
+                <div class="field-input">
+                  <input type="number" id="processTemp" name="process_temp" />
+                  <span class="unit">c</span>
+                </div>
+              </div>
+              <div class="field">
+                <label for="rotateSpeed"> Rotational Speed </label>
+                <div class="field-input">
+                  <input type="number" id="rotateSpeed" name="rotational_speed" />
+                  <span class="unit">rpm</span>
+                </div>
+              </div>
+              <div class="field">
+                <label for="torque"> Torque </label>
+                <div class="field-input">
+                  <input type="number" id="torque" name="torque" />
+                  <span class="unit">Nm</span>
+                </div>
+              </div>
+              <div class="field">
+                <label for="toolWear"> Tool wear </label>
+                <div class="field-input">
+                  <input type="number" id="toolWear" name="tool_wear" />
+                  <span class="unit">min</span>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="submit-section">
+            <button type="submit" id="submit-btn">Predict</button>
+          </div>
+        </div>
+      </div>
+    </form>
+  </div>
+</div>
+  {% endblock body %} {% block script %}
+  <script src="{% static 'js/navigation.js' %}"></script>
+  <script src="{% static 'js/selector.js' %}"></script>
+  {% endblock script %}
