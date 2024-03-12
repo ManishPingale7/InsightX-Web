@@ -1,0 +1,48 @@
+{% extends 'web/base.html' %}
+ {% load static %} 
+ 
+ {% block title %}
+  Monitoring
+ {%endblock title %} 
+ 
+ {% block head %}
+  
+  <link rel="stylesheet" href=" {% static 'css/bearings_predict_style.css' %}" />
+  
+  {% endblock head %} 
+  {% block monitoring_active %}current{% endblock monitoring_active%} 
+  {% block body %}
+  <form action="/diagnose" method="POST" enctype="multipart/form-data">
+    {% csrf_token %}
+    <div class="container">
+      <div class="info-field-container">
+        <input
+          type="text"
+          class="input-field"
+          name="machine_name"
+          placeholder="Enter Your Machine Name"
+        />
+        <select name="power" class="select-menu">
+          <option>Select Power Useage</option>
+          <option value="0">0W</option>
+          <option value="200">200W</option>
+          <option value="400">400W</option>
+        </select>
+      </div>
+      <div class="drop-zone">
+        <span class="drop-zone__prompt"
+          >Drop Your (.CSV) file here or click to upload</span
+        >
+        <input type="file" name="vib_file" class="drop-zone__input" />
+      </div>
+      <div class="submit-section">
+        <button class="submit-btn">Predict</button>
+      </div>
+    </div>
+  </form>
+    
+    {% endblock body %} 
+    {% block script %}
+    <script src="{% static 'js/bearings_prect_script.js' %}"></script>
+    {% endblock script %}
+    

@@ -3,7 +3,7 @@
 {% block title %}Predictions{%endblock title %} 
 {% block predictions_active %}current{% endblock predictions_active %} 
 {%block head %}
-<link rel="stylesheet" href="{% static 'css/dashboard.css' %}" />
+<link rel="stylesheet" href="{% static 'css/condition.css' %}" />
 <script src="
     https://cdn.jsdelivr.net/npm/chart.js@4.3.0/dist/chart.umd.min.js
     "></script>
@@ -30,24 +30,32 @@ const record = JSON.parse("{{record|escapejs}}")[0];
   </div>
   <div class="status">
     <div class="status-card" >
-      <h3>No Failure Rate</h3>
-      <h2 id="no-failure"></h2>
+      <h3>Ball Failure</h3>
+      <h2 id="B-failure"></h2>
     </div>
     <div class="status-card" >
-      <h3>Power Failure Rate</h3>
-      <h2 id="power-failure"></h2>
+      <h3>Inner Failure</h3>
+      <h2 id="I-failure"></h2>
     </div>
     <div class="status-card" >
-      <h3>Heat Disssipation  Rate</h3>
-      <h2 id="heat-dissipation"></h2>
+      <h3>Inner ball failure</h3>
+      <h2 id="IB-failure"></h2>
     </div>
     <div class="status-card" >
-      <h3>Tool Wear Failure Rate</h3>
-      <h2 id="tool-wear"></h2>
+      <h3>Inner outer</h3>
+      <h2 id="IO-failure"></h2>
     </div>
     <div class="status-card" >
-      <h3>Overstrain Failure Rate</h3>
-      <h2 id="overstrain-failure"></h2>
+      <h3>Normal</h3>
+      <h2 id="Normal"></h2>
+    </div>
+    <div class="status-card" >
+      <h3>Outer</h3>
+      <h2 id="O-failure"></h2>
+    </div>
+    <div class="status-card" >
+      <h3>Outer Ball</h3>
+      <h2 id="OB-failure"></h2>
     </div>
   </div>
   <div class="details">
@@ -60,24 +68,32 @@ const record = JSON.parse("{{record|escapejs}}")[0];
       </div>
       <div class="legends">
         <div class="legend">
-          <div class="color nofailurecolor"></div>
-          <div class="label">No Failure</div>
+          <div class="color ballCol"></div>
+          <div class="label">Ball Failure</div>
         </div>
         <div class="legend">
-          <div class="color powerfailurecolor"></div>
-          <div class="label">Power Failure</div>
+          <div class="color innerCol"></div>
+          <div class="label">Inner Failure</div>
         </div>
         <div class="legend">
-          <div class="color toolwearfailurecolor"></div>
-          <div class="label">Tool Wear</div>
+          <div class="color innerBallCol"></div>
+          <div class="label">Inner ball failure</div>
         </div>
         <div class="legend">
-          <div class="color heatfailurecolor"></div>
-          <div class="label">Heat Disssipation</div>
+          <div class="color innerOuterCol"></div>
+          <div class="label">Inner outer</div>
         </div>
         <div class="legend">
-          <div class="color overstrainfailurecolor"></div>
-          <div class="label">Overstrain Failure</div>
+          <div class="color normalCol"></div>
+          <div class="label">Normal</div>
+        </div>
+        <div class="legend">
+          <div class="color outerCol"></div>
+          <div class="label">Outer</div>
+        </div>
+        <div class="legend">
+          <div class="color outerBallCol"></div>
+          <div class="label">Outer Ball</div>
         </div>
       </div>
     </div>
@@ -88,7 +104,7 @@ const record = JSON.parse("{{record|escapejs}}")[0];
     <a href="#"><i class="fa fa-facebook"></i></a>
     <a href="#"><i class="fa fa-twitter"></i></a>
     <a href="#"><i class="fa fa-linkedin"></i></a>
-    <a href="https://github.com/ManishPingale13/InsightX-Web" target="_blank"
+    <a href="https://github.com/Saisinare/InsightX" target="_blank"
       ><i class="fa fa-github"></i
     ></a>
   </div>
@@ -106,6 +122,6 @@ const record = JSON.parse("{{record|escapejs}}")[0];
 </footer>
 {% endblock body %} {% block script %}
 <script src="{% static 'js/navigation.js' %}"></script>
-<script src="{% static 'js/dashboard.js' %}"></script>
+<script src="{% static 'js/condition.js' %}"></script>
 
 {% endblock script %}

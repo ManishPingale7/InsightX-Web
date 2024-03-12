@@ -13,7 +13,7 @@ import numpy as np
 import pandas as pd
 
 from ml.Interface import Interface
-from .models import MachineRecord
+from .models import MachineRecord,MonitorRecord
 
 
 import warnings
@@ -26,8 +26,8 @@ def home(request):
     return render(request, "web/home.html")
 
 
-def about(request):
-    return render(request, "web/about.html")
+def monitoring(request):
+    return render(request, "web/bearings_prediction.html")
 
 
 def explore(request):
@@ -45,6 +45,13 @@ def delete_record(request, id):
             record[0].delete()
             return HttpResponse("true")
         return HttpResponse("false")
+
+def condition(request,id):
+    record=MonitorRecord.objects.filter(id=id,user=request.user)
+    if record:
+        record=serializers.serialize('json',record)
+        return render(request,"web/condition.html",{"record":record})
+    return redirect("Home")
 
 
 def dashboard(request, id):
@@ -95,13 +102,16 @@ def diagnose(request):
         if res == -1:
             return HttpResponse("CSV File should contain atleast 5000 values")
         else:        
+            name=request.POST["machine_name"]
             interface = Interface()
             result=interface.diagnose(res)
             print("In view:",result)
-
-        return HttpResponse(str(result))
-
-
+            rec=MonitorRecord(
+                machine_name=name,user=request.user,predictions=result
+                )
+            rec.save()
+            return redirect("Condition",id=rec.id)
+        
 @login_required()
 def predict(request):
     if request.method == "POST":

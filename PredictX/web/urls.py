@@ -9,9 +9,10 @@ urlpatterns = [
     path("diagnose",views.diagnose,name="Diagnose"),
     path("history",views.history,name="History"),
     path("explore",views.explore,name="Explore"),
-    path("about", views.about, name="About"),
+    path("bearing", views.monitoring, name="Monitoring"),
     path("delete-record/<int:id>", views.delete_record, name="Delete"),
     path("dashboard/<int:id>",views.dashboard,name="Dashboard"),
+    path("condition/<int:id>",views.condition,name="Condition"),
 
     path("login",views.login_user,name="Login"),
     path("signup",views.signup_user,name="Signup"),

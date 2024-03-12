@@ -23,6 +23,11 @@
           >
             <a href="{% url 'Predict' %}">Predict</a>
           </li>
+          <li
+            class="navitem {% block monitoring_active %}{% endblock monitoring_active %}"
+          >
+            <a href="{% url 'Monitoring' %}"> Monitoring</a>
+          </li>
           {% if request.user.is_authenticated %}
           <li
             class="navitem {% block history_active %}{% endblock history_active %}"
@@ -35,11 +40,7 @@
           >
             <a href="{% url 'Explore' %}">Explore</a>
           </li>
-          <li
-            class="navitem {% block about_active %}{% endblock about_active %}"
-          >
-            <a href="{% url 'About' %}">About</a>
-          </li>
+          
           {% if request.user.is_anonymous %}
           <li class="userlistactionlist">
             <a href="{% url 'Signup' %}" class="userAction" id="signup"

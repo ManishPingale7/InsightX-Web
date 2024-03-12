@@ -3,6 +3,14 @@ from django.contrib.auth.models import User
 
 # Create your models here.
 
+class MonitorRecord(models.Model):
+    id=models.AutoField(primary_key=True)
+    timestamp=models.DateTimeField(auto_now_add=True)
+    machine_name=models.CharField(max_length=50)
+    user = models.ForeignKey(User, on_delete=models.CASCADE)
+    predictions = models.JSONField()
+
+
 
 class MachineRecord(models.Model):
     id = models.AutoField(primary_key=True)

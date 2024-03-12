@@ -6,7 +6,8 @@ import numpy as np
 
 # Label mapping
 # 0-> No Failure, 1-> Power, 2-> Tool, 3-> Overstrain, 4-> Heat
-# {'B': 0, 'I': 1, 'IB': 2, 'IO': 3, 'N': 4, 'O': 5, 'OB': 6}
+# {'Ball': 0, 'Inner': 1, 'Inner Ball': 2, 'Inner Outer': 3, 
+# 'Normal': 4, 'Outer': 5, 'Outer B': 6}
 
 
 class Interface:
@@ -24,8 +25,8 @@ class Interface:
         return preds
 
     def diagnose(self, vib_data):
-        mapping = {0: 'B', 1: 'I',  2: 'IB',
-                   3: 'IO', 4: 'N', 5: 'O',  6: 'OB'}
+        # mapping = {0: 'B', 1: 'I',  2: 'IB',
+        #            3: 'IO', 4: 'N', 5: 'O',  6: 'OB'}
         preds = []
         for i in vib_data:
             i = i.astype(np.float64)
@@ -35,6 +36,10 @@ class Interface:
         stats = Counter(preds).most_common()
         prob = {}
         print(stats)
-        for i in stats:
-            prob[mapping[i[0]]] = ((i[1])/len(vib_data))*100
-        return prob
+        for ind,val in enumerate(stats):
+            prob[ind] = ((val[1])/len(vib_data))
+        plot_data=[0,0,0,0,0,0,0]
+        for i in prob.keys():
+            plot_data[i]=prob.get(i)
+        print(plot_data)
+        return plot_data
