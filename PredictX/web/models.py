@@ -11,6 +11,16 @@ class MonitorRecord(models.Model):
     predictions = models.JSONField()
 
 
+class VibrationAnalysisRecord(models.Model):
+    machine_name = models.CharField(max_length=255)
+    user = models.ForeignKey(User, on_delete=models.CASCADE)
+    report_text = models.TextField()
+    file_name = models.CharField(max_length=255)
+    created_at = models.DateTimeField(auto_now_add=True)
+
+    def __str__(self):
+        return f"{self.machine_name} - {self.created_at.strftime('%Y-%m-%d %H:%M')}"
+
 
 class MachineRecord(models.Model):
     id = models.AutoField(primary_key=True)

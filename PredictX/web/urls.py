@@ -17,4 +17,11 @@ urlpatterns = [
     path("login",views.login_user,name="Login"),
     path("signup",views.signup_user,name="Signup"),
     path("logout",views.logout_user,name="Logout"),
+
+    path('vibration-analysis/', views.vibration_analysis,
+         name='vibration_analysis'),
+    # Optional: Add a URL to view past reports
+    path('vibration-reports/', views.vibration_reports, name='vibration_reports'),
+    path('download-report/<int:record_id>/',
+         views.download_vibration_report, name='download_vibration_report'),
 ]
